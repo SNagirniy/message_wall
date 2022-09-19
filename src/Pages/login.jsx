@@ -1,17 +1,19 @@
+import FormContainer from "components/FormContainer/FormContainer";
+import LoginForm from "components/LoginForm/LoginForm";
+import FormWrapper from "components/FormWrapper/FormWrapper";
+
 const Login = () => {
 
-    return <div
-      style={{
-        height: '100vh',
-        display: 'flex',
-        justifyContent: 'center',
-        alignItems: 'center',
-        fontSize: 40,
-        color: '#010101'
-      }}
-    >
-      Login
-    </div>
+  return (
+    <FormContainer>
+      <FormWrapper>
+        <LoginForm />
+      </FormWrapper>
+    
+  </FormContainer>)
+
+
+
 }
 
 export default Login;

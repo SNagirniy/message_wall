@@ -1,0 +1,55 @@
+@font-face {
+    font-family: 'Alegreya Sans', sans-serif;
+    font-style: normal;
+    font-weight: 400;
+    src: local('AlergeyaSans-Regular'),
+    url('../../../assets/Fonts/AlegreyaSans-Regular.ttf') format('truetype'),
+
+}
+
+@font-face {
+    font-family: 'Alegreya Sans', sans-serif;
+    font-style: normal;
+    font-weight: 500;
+    src: local('AlergeyaSans-Medium'),
+    url('../../../assets/Fonts/AlegreyaSans-Medium.ttf') format('truetype'),
+
+}
+
+@font-face {
+    font-family: 'Alegreya Sans', sans-serif;
+    font-style: normal;
+    font-weight: 700;
+    src: local('AlergeyaSans-Bold'),
+    url('../../../assets/Fonts/AlegreyaSans-Bold.ttf') format('truetype'),
+
+}
+
+@font-face {
+    font-family: 'Alegreya Sans', sans-serif;
+    font-style: normal;
+    font-weight: 900;
+    src: local('AlergeyaSans-Black'),
+    url('../../../assets/Fonts/AlegreyaSans-Black.ttf') format('truetype'),
+
+}
+
+
+// Fonts
+$font: 'Alegreya Sans', sans-serif;
+$primary-letter-spacing: 0.04em;
+
+// Colors
+$primary-text-color: #212121;
+$secondary-text-color: #9b9faa;
+$accent-text-color: #ffffff;
+$light-gray: #e0e0e0;
+
+$accent-color: #fc842d;
+
+$primary-bg-color: #ffffff;
+$secondary-bg-color: #f0f1f3;
+
+$decorative-color: #264061;
+
+$cubic: 250ms cubic-bezier(0.4, 0, 0.2, 1);

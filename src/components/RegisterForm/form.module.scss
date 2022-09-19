@@ -1,0 +1,44 @@
+.form{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    font-size: 400;
+    outline: none;
+}
+
+.field{
+    display:block;
+    width: 100%;
+    margin-bottom: 1rem;
+    padding: 0.2rem;
+    border-style: none;
+    border-radius: 0.2rem;
+    border-bottom: 0.1rem solid blue;
+    outline: none;
+    transition: border-bottom 250ms ease-in-out;
+
+    &:focus-within{
+     border-bottom: 0.1rem solid #997af0;
+    }
+
+}
+
+.field_error{
+  
+    border-bottom: 0.1rem solid red;
+
+    &:focus-within{
+     border-bottom: 0.1rem solid red;
+    }
+
+}
+
+.form_button{
+    display:block;
+    width: 100%;
+    padding: 0.2rem;
+    border-style: none;
+    border-radius: 0.2rem;
+}

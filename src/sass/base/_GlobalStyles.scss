@@ -1,0 +1,34 @@
+@import './BaseStyles.scss';
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  height: 100vh;
+  color: $primary-text-color;
+  background: $primary-bg-color;
+  font-family: $font;
+  margin: 0;
+}
+//    Style none
+ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+h1,
+h2,
+h3,
+p {
+  margin: 0;
+  padding: 0;
+}
+
+a {
+  text-decoration: none;
+}
+
+img {
+  display: block;
+  width: 100%;}
