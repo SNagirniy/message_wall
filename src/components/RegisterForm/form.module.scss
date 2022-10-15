@@ -12,11 +12,12 @@
     display:block;
     width: 100%;
     margin-bottom: 1rem;
-    padding: 0.2rem;
+    padding: 0.5rem;
     border-style: none;
     border-radius: 0.2rem;
     border-bottom: 0.1rem solid blue;
     outline: none;
+    background-color: #bdbcbe;
     transition: border-bottom 250ms ease-in-out;
 
     &:focus-within{

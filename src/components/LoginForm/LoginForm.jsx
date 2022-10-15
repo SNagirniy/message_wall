@@ -1,12 +1,11 @@
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
 import { Link } from 'react-router-dom';
-import { useNavigate } from 'react-router-dom';
+import operations from 'APIService/service';
 import s from './loginForm.module.scss';
 
 
-const LoginForm = () => {
-  const navigate = useNavigate();
+const LoginForm = ({setLogin, setUser}) => {
 
   const validationSchema = Yup.object({
     email: Yup.string()
@@ -28,9 +27,14 @@ const LoginForm = () => {
   const renderError = message => <p className={s.error}>{message}</p>;
 
  
-  const handleSubmit = (values) => {
-    console.log(values);
-    navigate('/mesagges')
+  const handleSubmit = async(values) => {
+    const data = await operations.loginUser(values);
+    if (data) {
+    localStorage.setItem('user', JSON.stringify(data))
+    setUser(data)
+    setLogin(true)}
+    
+    
   }
 
   return (

@@ -1,19 +1,14 @@
 import { Formik, Form, Field, ErrorMessage } from 'formik';
-import { useNavigate } from 'react-router-dom';
 import * as Yup from 'yup';
 import s from './form.module.scss';
 import { Link } from 'react-router-dom';
+import operations from 'APIService/service';
 
-const RegisterForm = () => {
+const RegisterForm = ({setLogin, setUser}) => {
 
-   const navigate = useNavigate();
 
   const validationSchema = Yup.object({
-    firstname: Yup.string()
-      .min(3, 'Too short')
-      .max(30, 'name should be of max 30 characters length')
-      .required('Required'),
-     lastname: Yup.string()
+   name: Yup.string()
       .min(3, 'Too short')
       .max(30, 'name should be of max 30 characters length')
       .required('Required'),
@@ -36,14 +31,18 @@ const RegisterForm = () => {
   const renderError = message => <p className={s.error}>{message}</p>;
 
  
-  const handleSubmit = (values) => {
-    console.log(values);
-    navigate('/mesagges')
+  const handleSubmit = async (values) => {
+    const data = await operations.registerUser(values);
+    if (data) {
+      localStorage.setItem('user', JSON.stringify(data))
+    setUser(data)
+   setLogin(true)}
+   
   }
 
   return (
     <Formik
-    initialValues={{ firstname: '', lastname: '', email: '', password: '' }}
+    initialValues={{ name: '', email: '', password: '' }}
     validationSchema={validationSchema}
     onSubmit={(values, { resetForm }) => {
       handleSubmit(values);
@@ -53,12 +52,8 @@ const RegisterForm = () => {
 
         <Form className={s.form}>
          
-        <Field className={`${s.field} + ${errors.firstname && touched.firstname? s.field_error : null}`} name="firstname" type="text" placeholder='First Name' />
+        <Field className={`${s.field} + ${errors.name && touched.name? s.field_error : null}`} name="name" type="text" placeholder='Name' />
         <ErrorMessage name="firstname" render={renderError} />
- 
-         
-        <Field className={`${s.field} + ${errors.lastname && touched.lastname? s.field_error : null}`} name="lastname" type="text" placeholder='Last Name' />
-        <ErrorMessage name="lastname" render={renderError} />
  
          
         <Field className={`${s.field} + ${errors.email && touched.email? s.field_error : null}`} name="email" type="email" placeholder='Email' />

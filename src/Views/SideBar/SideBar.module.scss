@@ -1,7 +1,10 @@
 .sideBar{
     display: flex;
+    box-sizing: border-box;
     width: 30%;
     height: 100%;
     flex-direction: column;
-    background-color: transparent;
+    padding: 5px 0 0 10px;
+    background-color:rgba(70, 67, 67, 0.233);
+    
 }

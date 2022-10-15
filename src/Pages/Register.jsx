@@ -2,12 +2,12 @@ import FormContainer from "components/FormContainer/FormContainer";
 import RegisterForm from "components/RegisterForm/RegisterForm";
 import FormWrapper from "components/FormWrapper/FormWrapper";
 
-const Register = () => {
+const Register = ({setUser,toggleLogin}) => {
 
   return (
     <FormContainer>
       <FormWrapper>
-        <RegisterForm />
+        <RegisterForm setUser={setUser} setLogin={toggleLogin} />
       </FormWrapper>
     
   </FormContainer>)

@@ -1,0 +1,15 @@
+.list{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    justify-items: flex-start;
+    overflow: auto;
+    &::-webkit-scrollbar {
+      width: 0.2rem;
+      &-thumb {
+        background-color: #ffffff9f;
+        width: 0.1rem;
+        border-radius: 1rem;
+      }
+    }
+}

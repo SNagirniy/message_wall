@@ -1,0 +1,29 @@
+.container{
+    display: flex;
+    flex-direction: column;
+    width: 70%;
+    height: 85%;
+    background-color: rgba(240, 186, 120, 0.555);
+    overflow-y: scroll;
+};
+
+.list{
+    display: flex;
+    flex-direction: column;
+};
+
+
+.item,
+.self{
+    padding: 5px;
+    max-width: 70%;
+    margin-bottom: 10px;
+     align-self: flex-start;
+    background-color: #fff;
+
+
+};
+
+.self{
+ align-self: flex-end;
+}
