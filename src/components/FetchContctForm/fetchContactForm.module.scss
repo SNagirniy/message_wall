@@ -1,0 +1,28 @@
+
+.container{
+display: flex;
+width: 100%;
+justify-content: flex-end;
+}
+
+.input{
+    width: 85%;
+    height: 40px;
+    margin-left: 5px;
+    padding: 20px;
+    border: none;
+    border-radius: 20px;
+    outline: none;
+    overflow: hidden;
+
+}
+
+
+.btn{
+    width: 40px;
+    height: 40px;
+    padding: 5px;
+    border: none;
+    border-radius: 50%;
+    background-color: #fff;
+}

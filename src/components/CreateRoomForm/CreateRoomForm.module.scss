@@ -1,4 +1,39 @@
-.contact{
+
+.roomForm{
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+    align-items: center;
+
+}
+
+.input{
+    width: 60%;
+    padding: 5px 20px;
+    border: none;
+    border-radius: 20px;
+    outline: none;
+    overflow: hidden;
+};
+.list{
+    display: flex;
+    flex-direction: column;
+    margin-top: 15px;
+    width: 100%;
+    justify-items: flex-start;
+    overflow: auto;
+    &::-webkit-scrollbar {
+      width: 0.2rem;
+      &-thumb {
+        background-color: #ffffff9f;
+        width: 0.1rem;
+        border-radius: 1rem;
+      }
+    }
+};
+
+.item{
+    
     display: flex;
     width: 96%;
     color: black;
@@ -15,12 +50,8 @@
         background-color: rgb(175, 235, 215);
         border-color: rgb(180, 235, 129);
     };
-    &active{
-    background-color: red;
-}
   
 };
-
 
 
 .avatar{
@@ -36,11 +67,3 @@
     font-size: 1rem;
     font-weight: 800;
 };
-
-.addBtn{
-    font-size: 0.7rem;
-    font-weight: 400;
-   padding: 5px;
-   border: 1px solid black;
-   border-radius: 10px;
-}

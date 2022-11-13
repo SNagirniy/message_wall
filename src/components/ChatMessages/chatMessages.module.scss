@@ -1,29 +1,100 @@
 .container{
-    display: flex;
-    flex-direction: column;
     width: 70%;
     height: 85%;
-    background-color: rgba(240, 186, 120, 0.555);
-    overflow-y: scroll;
+    font-size: small;
+    font-weight: bold;
+    color: rgb(83, 81, 81);
+    padding: 0 1%;
+
+    background-color: rgb(158 163 148 / 20%);
+    overflow-y: auto;
+    &::-webkit-scrollbar {
+        visibility: hidden;
+      width: 0.2rem;
+      &-thumb {
+        
+        background-color: #ffffff9f;
+        width: 0.1rem;
+        border-radius: 1rem;
+      }
+    }
+    
 };
 
-.list{
-    display: flex;
-    flex-direction: column;
-};
+
+.cont_date {
+    
+    position: sticky;
+    top: 15px;
+    text-align: center;
+    width: 30%;
+    margin: 15px auto;
+    padding: 2px 0;
+
+    
+    color: rgb(255 253 253 / 60%);
+    font-size: 10px;
+    font-weight: 100;
+    font-style: normal;
+    letter-spacing: 0.1em;
+    line-height: 1.16;
+
+    border:none;
+    border-radius: 15px;
+    
+    background-color:  rgb(103 108 108 / 6%);
+    
+}
+
 
 
 .item,
 .self{
-    padding: 5px;
+    display: flex;
+    flex-direction: column;
+    box-sizing: border-box;
+   align-items: flex-end;
+    padding: 10px;
+    min-width: 10%;
     max-width: 70%;
-    margin-bottom: 10px;
-     align-self: flex-start;
-    background-color: #fff;
-
+    width: max-content;
+    margin-bottom: 15px;
+    margin-left: 5px;
+    background-color: rgba(255, 255, 255, 0.8);
+    border-radius: 10px;
+    box-shadow: 6px 6px 8px 2px rgba(156, 154, 156, 0.5);
+   
 
 };
 
 .self{
- align-self: flex-end;
-}
+margin-left: auto;
+align-items: flex-start;
+ margin-right: 5px;
+ box-shadow: -6px 6px 8px 2px rgba(156,154,156,0.5);
+};
+.message{
+    
+    align-content: center;
+    overflow-wrap: break-word;
+    word-break: break-all;
+    text-align: justify;
+    line-height: 1.16;
+    letter-spacing: 0.04em;
+};
+
+.time{
+    display: inline-block;
+    margin-top: 5px;
+    font-size: 8px;
+    font-weight: 100;
+};
+
+ .scrollBtn{
+        position: absolute;
+        right: 5vw;
+        bottom: 15vh;
+        padding: 15px 5px;
+        border:none;
+        border-radius: 50%;
+    }

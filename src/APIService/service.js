@@ -63,6 +63,14 @@ const addContact = async contact => {
   } catch (error) {}
 };
 
+const createRoom = async credentials => {
+  try {
+    const res = await axios.post('rooms/create', credentials);
+
+    return res.data.room;
+  } catch (error) {}
+};
+
 const operations = {
   registerUser,
   loginUser,
@@ -70,6 +78,7 @@ const operations = {
   currentUser,
   fetchContacts,
   addContact,
+  createRoom,
 };
 
 export default operations;

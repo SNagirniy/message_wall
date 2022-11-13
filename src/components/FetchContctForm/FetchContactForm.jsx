@@ -1,8 +1,11 @@
 import { useState, useEffect } from "react";
 import operations from '../../APIService/service';
-import {DebounceInput} from 'react-debounce-input';
+import { DebounceInput } from 'react-debounce-input';
 
-const FetchContctForm = ({setContacts}) => {
+import s from './fetchContactForm.module.scss'
+
+
+const FetchContactForm = ({users,setContacts}) => {
     const [query, setQuery] = useState('');
     
 
@@ -15,22 +18,23 @@ const FetchContctForm = ({setContacts}) => {
     useEffect(() => {
         if (query === '') { return }
         (async () => {const result = await operations.fetchContacts(query);
-       result.contacts && setContacts(result.contacts);
+            result.contacts && setContacts(result.contacts);
         setQuery('')})()
 }, [query,setContacts])
 
     return (
-        <div className="container">
+        <div className={s.container}>
+            {users && <button className={s.btn} type="button" onClick={() => setContacts(null)}>B</button>}
             <DebounceInput
                 type="text"
                 minLength={2}
                 debounceTimeout={500}
                 onChange={handleChange}
                 placeholder="Search contacts.Type name or email."
-                className="input"
+                className={s.input}
                 value={query}/>
         </div>
     )
 }
 
-export default FetchContctForm;
+export default FetchContactForm;

@@ -25,12 +25,12 @@ const ChatInput = ({ handleSendMsg }) => {
        
       </div>
       <form onSubmit={handleSubmit} className={s.form}>
-          <input
+          <textarea
           value ={msg}
           onChange={handleChange}
           type="text"
           placeholder="type your message here"
-          className={s.input}
+            className={s.input}
          
         />
           <button type="submit">

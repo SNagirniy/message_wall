@@ -1,5 +1,6 @@
 import { useEffect, useState, useRef } from 'react';
 import { io } from 'socket.io-client';
+import { v4 as uuidv4 } from 'uuid';
 
 export default function useChat() {
   const [messages, setMessages] = useState([]);
@@ -16,7 +17,11 @@ export default function useChat() {
 
   useEffect(() => {
     socket.emit('add-user', '');
-  }, [socket]);
+
+    return () => {
+      socket.off('add-user');
+    };
+  }, []);
 
   useEffect(() => {
     socket.on('msg-notify', log => {
@@ -28,27 +33,34 @@ export default function useChat() {
     socket.on('msg-recieve', message => {
       setMessages(prev => [...prev, message]);
     });
-  }, [socket]);
+  }, []);
 
   useEffect(() => {
     socket.on('msgs-list', messages => {
       setMessages(messages);
     });
-  }, [socket]);
+  }, []);
 
-  const getAllMessages = () => {
+  useEffect(() => {
     socket.emit('get-msgs', chatId);
-  };
-
-  useEffect(() => getAllMessages(), [chatId]);
+  }, [chatId]);
 
   const sendMessage = msg => {
     socket.emit('send-msg', {
       to: chatId,
       msg,
     });
-    getAllMessages();
+    setMessages(prev => [
+      ...prev,
+      {
+        _id: uuidv4(),
+        to: chatId,
+        message: msg,
+        from: user.id,
+        createdAt: new Date(),
+      },
+    ]);
   };
 
-  return { user, messages, sendMessage, getAllMessages, setChatId };
+  return { user, messages, sendMessage, setChatId };
 }
