@@ -56,10 +56,10 @@ const fetchContacts = async query => {
   } catch (error) {}
 };
 
-const addContact = async contact => {
+const addContact = async id => {
   try {
-    const res = await axios.patch('contacts/add', contact);
-    return res.data;
+    const res = await axios.patch('contacts/add', { contactId: id });
+    return res.data.result;
   } catch (error) {}
 };
 
@@ -71,6 +71,20 @@ const createRoom = async credentials => {
   } catch (error) {}
 };
 
+const getRooms = async () => {
+  try {
+    const res = await axios.get('rooms/get');
+    return res.data.rooms;
+  } catch (error) {}
+};
+
+const getChatUsers = async () => {
+  try {
+    const res = await axios.get('contacts/chat_users');
+    return res.data.users;
+  } catch (error) {}
+};
+
 const operations = {
   registerUser,
   loginUser,
@@ -79,6 +93,8 @@ const operations = {
   fetchContacts,
   addContact,
   createRoom,
+  getChatUsers,
+  getRooms,
 };
 
 export default operations;

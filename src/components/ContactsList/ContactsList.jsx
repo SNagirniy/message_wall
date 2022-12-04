@@ -1,12 +1,12 @@
 import s from './contactsList.module.scss'
 import Contact from 'components/Contact/Contact';
-import { useParams } from 'react-router-dom';
 
 
 
 
-const ContactsList = ({items ,chatVisibility ,users, contacts, addToContacts }) => {
- const {chatId} = useParams();
+
+const ContactsList = ({setCurrentChat,items ,chatVisibility ,users, contacts, addToContacts }) => {
+
     
     const isAddBtn = (item) => {
         const showBtn = contacts.some(contact => contact._id === item._id);
@@ -19,7 +19,7 @@ const ContactsList = ({items ,chatVisibility ,users, contacts, addToContacts }) 
     if (users) {
         return <ul className={s.list}>
             {users.map((item) => {
-            return <Contact addToContacts={addToContacts} key={item._id} contact={item} btn={isAddBtn(item)} />
+            return <Contact setCurrentChat={setCurrentChat}  addToContacts={addToContacts} key={item._id} contact={item} btn={isAddBtn(item)} />
             })}
         </ul>
     }
@@ -32,8 +32,8 @@ const ContactsList = ({items ,chatVisibility ,users, contacts, addToContacts }) 
         
         <ul className={s.list}>
             {items.map((item) => {
-                if (chatVisibility) { return <Contact chatId={chatId} addToContacts={addToContacts} key={item._id} contact={item} btn={isAddBtn(item)} /> };
-                return <Contact addToContacts={addToContacts} key={item._id} contact={item} />
+                if (chatVisibility) { return <Contact setCurrentChat={setCurrentChat} isRoom={item.isRoom}  addToContacts={addToContacts} key={item._id} contact={item} btn={isAddBtn(item)} /> };
+                return <Contact setCurrentChat={setCurrentChat} addToContacts={addToContacts} key={item._id} contact={item} />
             })}
         </ul>
     

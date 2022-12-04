@@ -1,4 +1,5 @@
 import s from "./ChatInput.module.scss"
+import sprite from '../../images/sprite.svg';
 import { useState } from "react";
 
 
@@ -33,8 +34,10 @@ const ChatInput = ({ handleSendMsg }) => {
             className={s.input}
          
         />
-          <button type="submit">
-            Send
+          <button className={s.btn} type="submit">
+            <svg className={s.btn_icon}>
+              <use href={sprite+"#icon-paper-plane"}></use>
+           </svg>
         </button>
       </form>
     </div>

@@ -4,9 +4,9 @@ import FetchContactForm from 'components/FetchContctForm/FetchContactForm';
 import NavContainer from 'components/NavContainer/NavContainer';
 import ChatMenuBtn from 'components/ChatMenuBtn/ChatMenuBtn';
 import CreateRoomForm from 'components/CreateRoomForm/CreateRoomForm';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
-const SideBar = ({handleSetUsers, items ,users, contacts, addToContacts, setContacts, isChat, toggleIsChat }) => {
+const SideBar = ({setCurrentChat,createRoom, handleSetUsers, items ,users, contacts, addToContacts, setContacts, isChat, toggleIsChat }) => {
     
     const [menuBtnIsactive, setMenuBtnIsActive] = useState(false)
 
@@ -17,7 +17,10 @@ const SideBar = ({handleSetUsers, items ,users, contacts, addToContacts, setCont
         menuBtnIsactive && setMenuBtnIsActive(false)
     };
 
-    const menuBtnHandler = () => setMenuBtnIsActive(!menuBtnIsactive)
+    useEffect(() => { if (users) { return setMenuBtnIsActive(false) } else return }, [users]);
+    
+
+    const menuBtnHandler = () => { setMenuBtnIsActive(!menuBtnIsactive);  users && handleSetUsers(null)}
 
 
     return (
@@ -35,8 +38,8 @@ const SideBar = ({handleSetUsers, items ,users, contacts, addToContacts, setCont
                     <span>Contacts</span>
                 </label>
             </div>
-           {!menuBtnIsactive && <ContactsList items={items} chatVisibility={isChat} addToContacts={addToContacts} users={users} contacts={contacts} />}
-           {menuBtnIsactive && <CreateRoomForm contacts={contacts}/>}
+           {!menuBtnIsactive && items && <ContactsList setCurrentChat={setCurrentChat} items={items} chatVisibility={isChat} addToContacts={addToContacts} users={users} contacts={contacts} />}
+           {menuBtnIsactive && <CreateRoomForm createRoom={createRoom} contacts={contacts}/>}
             <ChatMenuBtn isActive={menuBtnIsactive} handleClick={menuBtnHandler} />
     </div>)
 }

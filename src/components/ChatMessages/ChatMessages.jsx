@@ -1,4 +1,5 @@
 import s from './chatMessages.module.scss';
+import sprite from '../../images/sprite.svg'
 import { useEffect, useState, useRef } from 'react';
 
 const ChatMessages = ({ id, messages }) => {
@@ -42,7 +43,12 @@ const ChatMessages = ({ id, messages }) => {
         </ul></div>
 
        })}
-       <button onClick={scrollFn} className={s.scrollBtn} type='button'>Down</button>
+       <button onClick={scrollFn} className={s.scrollBtn} type='button'>
+           <svg className={s.btn_icon}>
+               <use href={sprite + "#icon-angle-down"}>
+               </use>
+           </svg>
+       </button>
        <div ref={scrollRef}></div>
        
     </div>

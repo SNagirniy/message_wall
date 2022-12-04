@@ -19,7 +19,7 @@ import operations from "APIService/service";
 export const App = () => {
   const [isLogedIn, setIsLogedIn] = useState(false);
   const [user, setUser] = useState(null);
-  const [contacts, setContacts] = useState([{_id: 123, name: "john"}])
+  const [contacts, setContacts] = useState([])
 
 
   const setUserData = (data) => {

@@ -50,8 +50,16 @@
         background-color: rgb(175, 235, 215);
         border-color: rgb(180, 235, 129);
     };
+
   
 };
+
+
+.item_input{
+    position: absolute;
+    width: 0;
+    height: 0;
+}
 
 
 .avatar{
@@ -67,3 +75,18 @@
     font-size: 1rem;
     font-weight: 800;
 };
+
+
+
+.check_icon{
+    visibility: hidden;
+    width: 20px;
+    height: 20px;
+    fill: green;
+
+
+    .item_input:checked ~ & {
+        visibility: visible;
+    }
+    
+}

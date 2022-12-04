@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import operations from '../../APIService/service';
 import { DebounceInput } from 'react-debounce-input';
+import sprite from '../../images/sprite.svg'
 
 import s from './fetchContactForm.module.scss'
 
@@ -24,7 +25,11 @@ const FetchContactForm = ({users,setContacts}) => {
 
     return (
         <div className={s.container}>
-            {users && <button className={s.btn} type="button" onClick={() => setContacts(null)}>B</button>}
+            {users && <button className={s.btn} type="button" onClick={() => setContacts(null)}>
+                <svg className={s.btn_icon}>
+                    <use href={sprite+"#icon-arrow-small-left"}></use>
+            </svg>
+            </button>}
             <DebounceInput
                 type="text"
                 minLength={2}

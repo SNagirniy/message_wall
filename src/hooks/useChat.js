@@ -1,11 +1,12 @@
-import { useEffect, useState, useRef } from 'react';
+/*import { useEffect, useState, useRef } from 'react';
 import { io } from 'socket.io-client';
 import { v4 as uuidv4 } from 'uuid';
 
 export default function useChat() {
   const [messages, setMessages] = useState([]);
   const user = JSON.parse(localStorage.getItem('user'));
-  const [chatId, setChatId] = useState(null);
+  const [currentChat, setCurrentChat] = useState({});
+  const [room, setRoom] = useState(null);
 
   const { current: socket } = useRef(
     io('http://localhost:5000', {
@@ -27,13 +28,14 @@ export default function useChat() {
     socket.on('msg-notify', log => {
       console.log(log);
     });
+    return () => {
+      socket.off('msg-notify');
+    };
   }, [socket]);
 
-  useEffect(() => {
-    socket.on('msg-recieve', message => {
-      setMessages(prev => [...prev, message]);
-    });
-  }, []);
+  socket.on('msg-recieve', message => {
+    console.log(currentChat, message.from);
+  });
 
   useEffect(() => {
     socket.on('msgs-list', messages => {
@@ -42,19 +44,33 @@ export default function useChat() {
   }, []);
 
   useEffect(() => {
-    socket.emit('get-msgs', chatId);
-  }, [chatId]);
+    const { _id, isRoom } = currentChat;
+    const cred = { _id, isRoom: isRoom ? isRoom : false };
+    socket.emit('get-msgs', cred);
+  }, [currentChat]);
+
+  useEffect(() => {
+    socket.on('new-room', room => setRoom(room));
+  }, [socket]);
+
+  const connectToRooms = arrRoomsIds => {
+    socket.emit('connect_to_rooms', arrRoomsIds);
+  };
+
+  const createRoom = data => {
+    socket.emit('create-room', data);
+  };
 
   const sendMessage = msg => {
     socket.emit('send-msg', {
-      to: chatId,
+      to: currentChat._id,
       msg,
     });
     setMessages(prev => [
       ...prev,
       {
         _id: uuidv4(),
-        to: chatId,
+        to: currentChat._id,
         message: msg,
         from: user.id,
         createdAt: new Date(),
@@ -62,5 +78,15 @@ export default function useChat() {
     ]);
   };
 
-  return { user, messages, sendMessage, setChatId };
-}
+  return {
+    user,
+    messages,
+    sendMessage,
+    currentChat,
+    setCurrentChat,
+    createRoom,
+    room,
+    setRoom,
+    connectToRooms,
+  };
+}*/
