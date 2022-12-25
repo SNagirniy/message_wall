@@ -21,7 +21,7 @@ const userNickName = name? name : title
     
     return (
         <li className={s.item}>
-            <NavLink onClick={() => setCurrentChat(contact)} className={ ({isActive}) => isActive? s.active : s.contact} to={`/messages/${_id}`}>
+            <NavLink onClick={()=> setCurrentChat(contact)} className={ ({isActive}) => isActive? s.active : s.contact} to={`/messages/${_id}`}>
                 <div className={s.avatar}><img src={avatar ? avatar : `https://avatars.dicebear.com/api/initials/:${userNickName}.svg`} alt="avatar" /></div>
                 <h3 className={s.contact_name}>{userNickName}</h3>
                 {!isRoom && btn &&<button disabled={added} onClick={()=>handleAddContact(_id)} type="button" className={s.addBtn}>{added? '+' : 'Add'}</button>}

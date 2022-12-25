@@ -1,0 +1,114 @@
+
+
+.details_cont{
+display: block;
+position: relative;
+overflow-y: auto;
+max-height: fit-content;
+}
+
+.hide_column_btn{
+    position: absolute;
+    top:0.5rem;
+    left:0.5rem;
+    padding: 0.5rem;
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    z-index: 100;
+    transition: skale 250ms linear;
+    &:hover{
+        scale: 1.05;
+    }
+
+}
+.hide_column_btn_icon{
+
+    width:15px;
+    height: 15px;
+    fill: rgb(32, 32, 32);
+
+}
+
+.chanel_avatar_cont{
+    display: block;
+    position: relative;
+ 
+}
+
+.chanel_avatar{
+   object-fit: cover;
+}
+
+
+.add_avatar_btn{
+    position: absolute;
+    left: 0.5rem;
+    bottom: 0;
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    transition: skale 250ms linear;
+    &:hover{
+        scale: 1.05;
+    }
+
+}
+.add_avatar_icon{
+    width: 30px;
+    height: 30px;
+  stroke-width: 1;
+  fill: whitesmoke;
+  /*rgb(32, 32, 32);*/
+}
+
+.info_cont{
+display: block;
+box-sizing: border-box;
+padding: 0.5rem;
+& .title{
+    margin-bottom: 0.5rem;
+}
+}
+
+.member_info_item{
+    display: flex;
+    margin-bottom: 0.5rem;
+    align-items: center;
+}
+
+.member_info_link{
+    display: flex;
+    align-items: center;
+    margin-right: 1rem;
+}
+
+.info{
+    font-size: 1.2rem;
+    font-weight: 800;
+
+}
+
+.avatar{
+    display: block;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    overflow: hidden;
+}
+
+.member_title{
+    margin-left: 0.5rem;
+    font-size: 1rem;
+    font-weight: 800;
+    color:rgb(39, 38, 38);
+
+}
+
+.remove_button{
+   width: 65px;
+   height: 30px;
+   padding: 5px;
+   font-size: small;
+   overflow-wrap: break-word;
+}

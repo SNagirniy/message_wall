@@ -1,4 +1,4 @@
-import s from './formContainer.module.scss'
+import s from './pageWrapper.module.scss'
 
 const FormContainer = ({ children }) => {
     return <div className={s.form_container}>

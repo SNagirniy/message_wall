@@ -1,4 +1,4 @@
-import FormContainer from "components/FormContainer/FormContainer";
+import FormContainer from "components/PageWrapper/PageWrapper";
 import LoginForm from "components/LoginForm/LoginForm";
 import FormWrapper from "components/FormWrapper/FormWrapper";
 

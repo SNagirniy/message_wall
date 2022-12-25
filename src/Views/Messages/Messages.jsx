@@ -3,45 +3,46 @@ import ChatInput from 'components/ChatInput/ChatInput';
 import ChatMessages from 'components/ChatMessages/ChatMessages';
 import NavContainer from 'components/NavContainer/NavContainer';
 import CurrentChanelInfo from 'components/CurrentChanelInfo/CurrentChanelInfo';
-import { useOutletContext } from 'react-router-dom';
 import { useEffect, useState } from 'react';
-import { useParams } from "react-router-dom";
+import { useCurrentChat } from 'Pages/Chat';
 import { v4 as uuidv4 } from 'uuid';
 
 const Messages = () => {
  
   const [messages, setMessages] = useState([]);
-
-  const [socket, user, currentChat] = useOutletContext();
-
+  const {handleRightColumnShow, socket, user, currentChat } = useCurrentChat();
  
+  
 
   useEffect(() => {
-    const { _id } = currentChat;
-    socket.on('msg-recieve', message => {
-      console.log(message.from, _id)
-      if (message.from === _id) {
-         
-        setMessages(prev => [...prev, message])
-            
-      }
-    })
-  }, [socket, currentChat]);
-   
-      
-    
-
-  useEffect(() => {
-    socket.on('msgs-list', messages => {
-      setMessages(messages);
-    });
-  }, [socket]);
-    
-     useEffect(() => {
     const { _id, isRoom } = currentChat;
     const cred = { _id, isRoom: isRoom ? isRoom : false };
     socket.emit('get-msgs', cred);
   }, [currentChat._id]);
+
+   useEffect(() => {
+    socket.on('msgs-list', messages => {
+      setMessages(messages);
+    });
+     
+    socket.on('msg-recieve', message => {
+      
+      if (message.to === user.id && message.from === currentChat._id) {
+        setMessages(prev => [...prev, message])  
+      } else if (currentChat.isRoom && message.to === currentChat._id) {
+        setMessages(prev => [...prev, message])
+      }
+    });
+     return () => {
+       socket.off('msgs-list');
+       socket.off('msg-recieve')
+    };
+     
+  }, [currentChat._id]);
+
+
+   
+
 
     const sendMessage = msg => {
     socket.emit('send-msg', {
@@ -66,14 +67,18 @@ const Messages = () => {
 
   
 
-    return <div className={s.messages}>
+    return (
+      <div className={s.messages}>
         <NavContainer>
-            <CurrentChanelInfo currentChat={currentChat} />
+          <CurrentChanelInfo
+            currentChat={currentChat}
+            rightColumnHandler={handleRightColumnShow}
+          />
         </NavContainer>
-        <ChatMessages id ={user.id} messages={messages} />
+        <ChatMessages id={user.id} messages={messages} />
         <ChatInput handleSendMsg={sendMessage} />
-        
-    </div>
+      </div>
+    );
 }
 
 export default Messages;
